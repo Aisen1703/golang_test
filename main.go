@@ -36,6 +36,31 @@ func uniqueUnion(a, b []int) []int {
 
 	return result
 }
+func uniqueConst(a, b []int) []int {
+	l := make(map[int]bool)
+	var inter []int
+
+	for _, v := range a {
+		l[v] = true
+
+	}
+
+	for _, v := range b {
+		if l[v] && !contains(inter, v) {
+			inter = append(inter, v)
+		}
+	}
+
+	return inter
+}
+func contains(x []int, i int) bool {
+	for _, v := range x {
+		if v == i {
+			return true
+		}
+	}
+	return false
+}
 
 func main() {
 	var n int
@@ -58,10 +83,12 @@ func main() {
 	m := uniqueElements(a)
 	c := uniqueElements(b)
 	v := uniqueUnion(a, b)
+	x := uniqueConst(a, b)
 
 	fmt.Printf("a=%d;", a)
 	fmt.Printf(" b=%d\n", b)
 	fmt.Printf("%d %d\n", m, c)
+	fmt.Printf("%d\n", x)
 	fmt.Printf("%d\n", v)
 
 }
