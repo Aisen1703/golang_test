@@ -17,6 +17,26 @@ func uniqueElements(arr []int) []int {
 	return result
 }
 
+func uniqueUnion(a, b []int) []int {
+	w := make(map[int]bool)
+	result := []int{}
+
+	for _, moon := range a {
+		if !w[moon] {
+			w[moon] = true
+			result = append(result, moon)
+		}
+	}
+	for _, moon := range b {
+		if !w[moon] {
+			w[moon] = true
+			result = append(result, moon)
+		}
+	}
+
+	return result
+}
+
 func main() {
 	var n int
 	fmt.Print("Введите размер массива 1:")
@@ -37,9 +57,11 @@ func main() {
 
 	m := uniqueElements(a)
 	c := uniqueElements(b)
+	v := uniqueUnion(a, b)
 
 	fmt.Printf("a=%d;", a)
 	fmt.Printf(" b=%d\n", b)
 	fmt.Printf("%d %d\n", m, c)
+	fmt.Printf("%d\n", v)
 
 }
